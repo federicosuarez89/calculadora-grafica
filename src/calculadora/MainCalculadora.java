@@ -63,8 +63,10 @@ public class MainCalculadora {
 
         //Agregar botones de números y operadores
         //Fila 1
-        crearBoton("C", 145, 120);
-        crearBoton("/", 210, 120);
+        crearBoton("C", 15, 120);
+        crearBoton("/", 80, 120);
+        crearBoton("√",145,120);
+        crearBoton("^",210,120);
         //Fila 2
         crearBoton("7", 15, 185);
         crearBoton("8", 80, 185);
@@ -106,7 +108,6 @@ public class MainCalculadora {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //operacion.setText(textoBoton); para probar el listener en cada botón
                 switch (textoBoton) {
                     case "0":
                     case "1":
@@ -124,9 +125,7 @@ public class MainCalculadora {
                                 nuevoOperando = false;
                             }
                         } else {
-                            //System.out.println(display.getText());
                             display.setText(display.getText() + textoBoton);
-                            //System.out.println(display.getText());
                         }
                         break;
                     case ".":
@@ -139,6 +138,8 @@ public class MainCalculadora {
                     case "/":
                     case "*":
                     case "-":
+                    case "√":
+                    case "^":
                     case "+":
                         if(operador.equals("")) {
                             operador = textoBoton;
@@ -188,6 +189,12 @@ public class MainCalculadora {
             case "/":
                 resultado = operando1 / operando2;
                 break;
+            case "√":
+                resultado = Math.sqrt(operando1);
+                break;
+            case "^":
+                resultado =Math.pow(operando1,operando2);
+
         }
         operacion.setText(formatoSalidaDisplay(operando1) + " " + operador + " " + formatoSalidaDisplay(operando2) + " =");
         display.setText(formatoSalidaDisplay(resultado));
